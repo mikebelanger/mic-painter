@@ -11,8 +11,16 @@
     <div id="app">
       <canvas id="wavedraw" width="1000" height="500"></canvas>
     </div>
-    <button id="record">Start Recording</button>
-    <button id="download-image">Download image</button>
+    <span class="button-container">
+      <button class="button is-danger" id="record">
+        <box-icon name='microphone' type='solid' color='#ffffff' ></box-icon>
+        Start recording!
+      </button>
+      <button class="button is-primary" id="download-image">
+        <box-icon name='download' type='solid' color='#ffffff'></box-icon>
+        Download image
+      </button>  
+    </span>
   </body>
   <script type="module" src="/src/main.ts" defer></script>
 </html>

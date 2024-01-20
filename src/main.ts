@@ -1,12 +1,15 @@
 import { downloadImage, drawBackground, visualize } from './helpers.ts'
+import 'bulma';
+import 'boxicons';
 
 let canvasElem = document.querySelector<HTMLCanvasElement>('#wavedraw');
 let downloadButton = document.getElementById('download-image');
 let recordButton: HTMLButtonElement | null = document.getElementById('record') as HTMLButtonElement | null;
 let isRecording = false;
 let source;
-const START_MESSAGE = 'Start Recording';
-const STOP_MESSAGE = 'Stop Recording';
+const START_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Start recording!`
+const STOP_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Stop recording`
+
 let audioContext: AudioContext;
 let analyser: AnalyserNode;
 
@@ -25,7 +28,7 @@ if (canvasElem) {
     isRecording = !isRecording;
 
     if (isRecording) {
-      if (recordButton) recordButton.textContent = STOP_MESSAGE
+      if (recordButton) recordButton.innerHTML = STOP_MESSAGE
       navigator.mediaDevices.getUserMedia({ audio: true })
       .then(stream => {
         audioContext = new AudioContext();
@@ -43,7 +46,7 @@ if (canvasElem) {
         console.log(`Error accessing microphone: ${err}`);
       });  
     } else {
-      if (recordButton) recordButton.textContent = START_MESSAGE;
+      if (recordButton) recordButton.innerHTML = START_MESSAGE;
     }
   });
 

@@ -1,0 +1,19 @@
+html {
+  background-color: grey !important;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+}
+
+.button-container > button {
+  margin: 0.25rem;
+}

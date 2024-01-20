@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "sass": "^1.70.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },
   "dependencies": {
+    "boxicons": "^2.1.4",
     "bulma": "^0.9.4"
   }
 }
