@@ -14,6 +14,20 @@ html {
   margin: 0.5em;
 }
 
-.button-container > button {
+.button-container > * {
   margin: 0.25rem;
+}
+
+button > :nth-child(1) {
+  margin-right: 0.5em;
+}
+
+canvas {
+  border-style: dashed;
+  border-width: 0.25em;
+}
+
+div.overlay {
+  position: absolute;
+  margin-top: 2em;
 }

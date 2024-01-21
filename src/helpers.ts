@@ -1,3 +1,5 @@
+export type VisualSettingsTypes = 'frequencybars' | 'sinewave';
+
 export function drawBackground(element: HTMLCanvasElement, color: string) {
   let ctx = element.getContext('2d');
   if (ctx) {
@@ -24,7 +26,7 @@ const randColor = (): string => {
   return `rgba(${randChannel()}, ${randChannel()}, ${randChannel()}, ${randChannel(1)})`;
 }
 
-export function visualize(canvas: HTMLCanvasElement, analyser: AnalyserNode, visualSetting: 'frequencybars' | 'sinewave') {
+export function visualize(canvas: HTMLCanvasElement, analyser: AnalyserNode, visualSetting: VisualSettingsTypes) {
   const WIDTH = canvas.width;
   const HEIGHT = canvas.height;
   const canvasCtx = canvas.getContext('2d');
