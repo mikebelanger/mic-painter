@@ -2,45 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" type="text/css" href="/src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draw your voice!</title>
   </head>
   <body>
     <div id="app">
-      <canvas id="wavedraw" width="1000" height="500">
-      </canvas>
-      <div id="instructions" class="overlay"></div>
-    </div>
-    <span class="button-container">
-      <div class="dropdown" id="visualization-type">
-        <div class="dropdown-trigger">
-          <button class="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu-1">
-            <box-icon name='deezer' type='logo' color='#ffffff'></box-icon>
-            Change Type
-          </button>
-        </div>
-        <div class="dropdown-menu" id="dropdown-menu-1" role="menu">
-          <div class="dropdown-content">
-            <a href="#sinewave" id="sinewave" class="dropdown-item">
-              Waves
-            </a>
-            <a href="#frequencybars" id="frequencybars" class="dropdown-item">
-              Bars
-            </a>
+      <div id="canvas-container">
+        <div id="instructions" class="overlay"></div>
+        <canvas id="wavedraw" width="1000" height="500">
+        </canvas>  
+      </div>
+      <span class="button-container">
+        <div class="dropdown" id="visualization-type">
+          <div class="dropdown-trigger">
+            <button class="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu-1">
+              <box-icon name='deezer' type='logo' color='#ffffff'></box-icon>
+              Change Type
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu-1" role="menu">
+            <div class="dropdown-content">
+              <a href="#sinewave" id="sinewave" class="dropdown-item">
+                Waves
+              </a>
+              <a href="#frequencybars" id="frequencybars" class="dropdown-item">
+                Bars
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <button class="button is-danger" id="record">
-        <box-icon name='microphone' type='solid' color='#ffffff' ></box-icon>
-        Start recording!
-      </button>
-      <button class="button is-primary" id="download-image">
-        <box-icon name='download' type='solid' color='#ffffff'></box-icon>
-        Download image
-      </button>
-    </span>
+        <button class="button is-danger" id="record">
+          <box-icon name='microphone' type='solid' color='#ffffff' ></box-icon>
+          Start recording!
+        </button>
+        <button class="button is-primary" id="download-image">
+          <box-icon name='download' type='solid' color='#ffffff'></box-icon>
+          Download image
+        </button>
+      </span>  
+    </div>
   </body>
   <script type="module" src="/src/main.ts" defer></script>
 </html>

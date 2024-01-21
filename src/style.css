@@ -1,13 +1,46 @@
 html {
   background-color: grey !important;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
 }
 
 #app {
-  display: flex;
-  justify-content: center;
+  width:100%;
+  height:100%;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+#canvas-container {
+  width:100%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 570px) {
+  .button-container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  #app {
+    flex-direction: row;
+  }
+  
+  .button-container {
+    flex-direction: column;
+  }
+}
 .button-container {
   display: flex;
   justify-content: center;
@@ -23,11 +56,8 @@ button > :nth-child(1) {
 }
 
 canvas {
+  width:100%;
+  height:100%;
   border-style: dashed;
   border-width: 0.25em;
-}
-
-div.overlay {
-  position: absolute;
-  margin-top: 2em;
 }
