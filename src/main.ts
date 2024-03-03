@@ -1,10 +1,11 @@
-import { downloadImage, drawBackground, visualize, VisualSettingsTypes } from './helpers.ts'
+import { downloadImage, drawBackground, toggleFullscreen, visualize, VisualSettingsTypes } from './helpers.ts'
 import 'bulma';
 import 'boxicons';
 
 let canvasElem = document.querySelector<HTMLCanvasElement>('#wavedraw');
 let downloadButton = document.getElementById('download-image');
 let recordButton: HTMLButtonElement | null = document.getElementById('record') as HTMLButtonElement | null;
+let fullscreenButton: HTMLButtonElement | null = document.getElementById('fullscreen') as HTMLButtonElement | null;
 let visualizationTypeButton: HTMLButtonElement | null = document.getElementById('visualization-type') as HTMLButtonElement | null;
 let dropdowns = [
   document.getElementById('sinewave') as HTMLButtonElement | null,
@@ -14,9 +15,9 @@ let instructionsDiv: HTMLButtonElement | null = document.getElementById('instruc
 
 let isRecording = false;
 let source;
-const START_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Start recording!`
-const STOP_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Stop recording`
-const INSTRUCTIONS = `Click 'Start Recording' and ensure you permit your browser to access your computer mic.`
+const START_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Start recording! (Spacebar)`
+const STOP_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Stop recording (Spacebar)`
+const INSTRUCTIONS = `Click 'Start Recording'/Press spacebar and ensure you permit your browser to access your computer mic.`
 let visualizationType: VisualSettingsTypes = 'frequencybars';
 
 let audioContext: AudioContext;
@@ -40,6 +41,10 @@ if (canvasElem) {
     }
   });
 
+  fullscreenButton?.addEventListener('click' as keyof HTMLElementEventMap, () => {
+    if (canvasElem) toggleFullscreen(canvasElem);
+  });
+
   // For clicking individual visualization types
   dropdowns.forEach((dropdown) => {
     dropdown?.addEventListener('click', (_ev: MouseEvent) => {
@@ -47,8 +52,7 @@ if (canvasElem) {
     })
   });
 
-  // Toggle record button on and off
-  recordButton?.addEventListener('click' as keyof HTMLElementEventMap, () => {
+  const toggleRecording = () => {
     isRecording = !isRecording;
 
     if (isRecording) {
@@ -74,7 +78,24 @@ if (canvasElem) {
       if (recordButton) recordButton.innerHTML = START_MESSAGE;
       if (instructionsDiv) instructionsDiv.textContent = INSTRUCTIONS;
     }
-  });
+  }
+
+  // Toggle record button on and off
+  recordButton?.addEventListener('click' as keyof HTMLElementEventMap, toggleRecording);
+
+  // Make a keyboard shortcut for triggering record (in case of Fullscreen mode)
+  window.addEventListener('keydown', (ev: KeyboardEvent) => {
+    switch(ev.key) {
+      case "Shift":
+        if (canvasElem) toggleFullscreen(canvasElem);
+        break;
+      case " ":
+        toggleRecording();
+        break;
+      default:
+        break;
+    }
+  })
 
   setInterval(() => {
     if (isRecording && canvasElem) {

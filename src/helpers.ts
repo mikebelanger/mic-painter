@@ -130,3 +130,16 @@ export function visualize(canvas: HTMLCanvasElement, analyser: AnalyserNode, vis
     }
   }
 }
+
+export function toggleFullscreen(elem: HTMLCanvasElement) {
+
+  if (!document.fullscreenElement && elem) {
+    elem.requestFullscreen().catch((err) => {
+      alert(
+        `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
+      );
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
