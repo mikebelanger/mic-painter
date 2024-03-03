@@ -3,6 +3,7 @@ import 'bulma';
 import 'boxicons';
 
 let canvasElem = document.querySelector<HTMLCanvasElement>('#wavedraw');
+let canvasContainerElem = canvasElem?.parentNode as HTMLElement;
 let downloadButton = document.getElementById('download-image');
 let recordButton: HTMLButtonElement | null = document.getElementById('record') as HTMLButtonElement | null;
 let fullscreenButton: HTMLButtonElement | null = document.getElementById('fullscreen') as HTMLButtonElement | null;
@@ -18,6 +19,10 @@ let source;
 const START_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Start recording! (Spacebar)`
 const STOP_MESSAGE = `<box-icon name='microphone' type='solid' color='#ffffff'></box-icon>Stop recording (Spacebar)`
 const INSTRUCTIONS = `Click 'Start Recording'/Press spacebar and ensure you permit your browser to access your computer mic.`
+const DEFAULT_CANVAS_DIMENSIONS = {
+  width: 1000,
+  height: 500,
+};
 let visualizationType: VisualSettingsTypes = 'frequencybars';
 
 let audioContext: AudioContext;
@@ -42,7 +47,7 @@ if (canvasElem) {
   });
 
   fullscreenButton?.addEventListener('click' as keyof HTMLElementEventMap, () => {
-    if (canvasElem) toggleFullscreen(canvasElem);
+    if (canvasElem && canvasContainerElem) toggleFullscreen(canvasElem, canvasContainerElem, DEFAULT_CANVAS_DIMENSIONS);
   });
 
   // For clicking individual visualization types
@@ -87,7 +92,7 @@ if (canvasElem) {
   window.addEventListener('keydown', (ev: KeyboardEvent) => {
     switch(ev.key) {
       case "Shift":
-        if (canvasElem) toggleFullscreen(canvasElem);
+        if (canvasElem && canvasContainerElem) toggleFullscreen(canvasElem, canvasContainerElem, DEFAULT_CANVAS_DIMENSIONS);
         break;
       case " ":
         toggleRecording();

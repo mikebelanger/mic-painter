@@ -61,3 +61,7 @@ canvas {
   border-style: dashed;
   border-width: 0.25em;
 }
+
+:fullscreen > canvas {
+  border-style: none !important;
+}

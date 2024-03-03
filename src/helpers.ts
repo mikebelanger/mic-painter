@@ -131,15 +131,33 @@ export function visualize(canvas: HTMLCanvasElement, analyser: AnalyserNode, vis
   }
 }
 
-export function toggleFullscreen(elem: HTMLCanvasElement) {
+type canvasDimensions = {width: number, height: number};
 
-  if (!document.fullscreenElement && elem) {
-    elem.requestFullscreen().catch((err) => {
-      alert(
+export function scaleCanvas(elem: HTMLCanvasElement, bigger: boolean, dimensions: canvasDimensions) {
+  let ctx = elem.getContext('2d');
+
+  // get scaling factor
+  const dx = bigger ? window.innerWidth / dimensions.width : dimensions.width / window.innerWidth;
+  const dy = bigger ? window.innerHeight / dimensions.height : dimensions.height / window.innerHeight;
+
+  ctx?.scale(dx, dy);
+  ctx?.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+export function toggleFullscreen(elem: HTMLCanvasElement, containerElement: HTMLElement, dimensions: canvasDimensions) {
+
+  if (!document.fullscreenElement && elem && containerElement) {
+    containerElement.requestFullscreen()
+    .then((_val) => {
+      scaleCanvas(elem, true, dimensions);
+    })
+    .catch((err) => {
+      console.error(
         `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
       );
     });
   } else {
+    scaleCanvas(elem, false, dimensions);
     document.exitFullscreen();
   }
 }
