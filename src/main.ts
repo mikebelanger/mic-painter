@@ -61,7 +61,7 @@ if (canvasElem) {
     isRecording = !isRecording;
 
     if (isRecording) {
-      if (instructionsDiv) instructionsDiv.textContent = '';
+      if (instructionsDiv) instructionsDiv.textContent = 'Start making noise!';
       if (recordButton) recordButton.innerHTML = STOP_MESSAGE
       navigator.mediaDevices.getUserMedia({ audio: true })
       .then(stream => {
