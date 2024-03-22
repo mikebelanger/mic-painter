@@ -53,7 +53,7 @@ body {
 }
 
 button > :nth-child(1) {
-  margin-right: var(--spacing);
+  margin-right: calc(var(--spacing) / 2);
 }
 
 canvas {
