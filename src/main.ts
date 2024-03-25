@@ -41,7 +41,12 @@ if (canvasElem) {
   // Download image button
   downloadButton?.addEventListener('click' as keyof HTMLElementEventMap, () => {
     if (canvasElem) {
-      let file = downloadImage(canvasElem, 'filename.png');
+      let filename = (document.getElementById('filename') as HTMLInputElement)?.value || 'filename';
+
+      // Ensure it has the proper extension
+      if (!filename.endsWith('.png')) filename = filename.concat('.png');
+      
+      let file = downloadImage(canvasElem, filename);
       file.click();
     }
   });

@@ -66,3 +66,7 @@ canvas {
 :fullscreen > canvas {
   border-style: none !important;
 }
+
+#filename {
+  max-width: max-content !important;
+}
