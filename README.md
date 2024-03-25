@@ -1,5 +1,5 @@
 # mic-painter
-Make trippy art with just your computer's mic!  [Try it out here!](https://audio-sketch.neocities.org/).
+Make trippy art with just your computer's mic!  [Try it out here!](https://mikebelanger.github.io/mic-painter/).
 
 ![Screenshot of site](screenshot.png)
 
